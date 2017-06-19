@@ -43,8 +43,6 @@ var name,
 	theNextTrain,
 	nextTrain;
 
-
-
 $("#add-train").on("click", function(event) {
 	event.preventDefault();
 
@@ -88,8 +86,9 @@ database.ref().on("child_added", function(childSnapshot) {
 	var trainMin = childSnapshot.val().minTillNext;
 	var trainNext = childSnapshot.val().theNextTrain;
 
-	$(".train-section").append("<tr class=" + keyId + "><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" + trainNext + "</td><td>" + trainMin + " min" + "<td><div id=" + keyId + " class='edit' data-toggle='modal' data-target='#edit-modal'><i class='edit-icon fa fa-pencil-square fa-2x' aria-hidden='true'></i></div>" + " " + "<div id=" + keyId + " class='delete'><i class='delete-icon fa fa-window-close fa-2x' aria-hidden='true'></i></div></td></tr>");
+	$(".train-section").append("<tr class=" + keyId + "><td class='editable'>" + trainName + "</td><td class='destination-div'>" + trainDest + "</td><td class='frequency-div'>" + trainFreq + "</td><td class='nextTrain-div'>" + trainNext + "</td><td class='minUntil-div'>" + trainMin + " min" + "<td><div class=" + keyId + " class='edit' data-toggle='modal' data-target='#edit-modal'><i class='edit fa fa-pencil-square fa-2x' aria-hidden='true'></i></div>" + " " + "<div class=" + keyId + " class='delete'><i class='fa fa-window-close fa-2x' aria-hidden='true'></i></div></td></tr>");
 
+	//removes data on firebase and deletes the table row when clicked
 	$(".delete").on("click", function() {
 		var removeKey = $(this).attr('id');
 		database.ref().child(removeKey).remove();
@@ -97,42 +96,12 @@ database.ref().on("child_added", function(childSnapshot) {
 		$(yourID).remove();
 	});
 
-	$(".edit").on("click", function() {
-		var editKey = $(this).attr('id');
-		var editYourID = "." + editKey; 
-		$("#edit-train").attr('data-id', editKey);
+	//edits the firebase database and changes data on website to match.
+	// $(".edit").on("click", function() {
 
-	});
+	// });
 
-	$("#edit-train").on("click", function(event) {
-		event.preventDefault();
 
-		var keyToEdit = $("#edit-train").attr('data-id');
-
-		name = $("#name-edit").val().trim();
-		destination = $("#destination-edit").val().trim();
-		first = $("#first-edit").val().trim();
-		frequency = $("#frequency-edit").val().trim();
-
-		firstTimeConverted = moment(first, "HH:mm").subtract(1, "years");
-		diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-		remainder = diffTime % frequency;
-		minutesTillTrain = frequency - remainder;
-		nextTrain = moment().add(minutesTillTrain, "minutes");
-		theNextTrain = moment(nextTrain).format("hh:mm A");
-
-		var editTrain = {
-			name: name,
-			destination: destination,
-			first: first,
-			frequency: frequency,
-			minTillNext: minutesTillTrain,
-			theNextTrain: theNextTrain
-		};
-
-		database.ref(keyToEdit).update(editTrain);
-		
-	});
 });
 
 
