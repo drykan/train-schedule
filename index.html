@@ -28,92 +28,99 @@
 	<main>
 		<div id="edit-modal" class="modal fade" role="dialog">
 			<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Edit Train</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body">
-				<form role="form">
-					<div class="row">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="name-edit">Train Name:</label>
-							<input class="form-control" id="name-edit" type="text">
-						</div>
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Train</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="destination-edit">Destination:</label>
-							<input class="form-control" id="destination-edit" type="text">
-						</div>
+					<div class="modal-body">
+						<form role="form">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="name-edit">Train Name:</label>
+										<input class="form-control" id="name-edit" type="text" required="true "value="">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="destination-edit">Destination:</label>
+										<input class="form-control" id="destination-edit" type="text" required="true" value="">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="first-edit">First Train(hh:mm):</label>
+										<input class="form-control" id="first-edit" type="text" required="true" value="">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="frequency-edit">Frequency (min):</label>
+										<input class="form-control" id="frequency-edit" type="number" required="true" value="">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-9"></div>
+								<div class="col-md-3 submitBtn">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button type="submit" class="btn btn-primary" id="edit-train" data-id="" data-dismiss="modal">Submit</button>
+								</div>
+							</div>
+						</form>
 					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="first-edit">First Train(hh:mm):</label>
-							<input class="form-control" id="first-edit" type="text">
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="frequency-edit">Frequency (min):</label>
-							<input class="form-control" id="frequency-edit" type="number">
-						</div>
-					</div>
-					</div>
-					<div class="row">
-					<div class="col-md-9"></div>
-					<div class="col-md-3 submitBtn">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-primary" id="edit-train" data-id="" data-dismiss="modal">Submit</button>
-					</div>
-					</div>
-				</form>
-			</div>
-			</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-			<div class="container">
-				<div class="panel panel-primary add-train-container">
-					<div class="panel-heading">
-						<h3 class="panel-title">Add Train</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<form role="form">
-								<div class="col-md-2">
-									<div class="form-group">
-										<label for="name-input">Train Name:</label>
-										<input class="form-control" id="name-input" type="text">
+				<div class="container">
+					<div class="panel panel-primary add-train-container">
+						<div class="panel-heading">
+							<h3 class="panel-title">Add Train</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<form role="form">
+									<div class="col-md-2">
+										<div class="form-group">
+											<label for="name-input">Train Name:</label>
+											<input class="form-control" id="name-input" type="text" required="true">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="destination-input">Destination:</label>
+											<input class="form-control" id="destination-input" type="text" required="true">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="first-input">First Train(hh:mm):</label>
+											<input class="form-control" id="first-input" type="text" required="true">
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label for="frequency-input">Frequency (min):</label>
+											<input class="form-control" id="frequency-input" type="number" required="true">
+										</div>
+									</div>
+									<div class="col-md-2 submitBtn">
+										<button class="btn btn-primary" id="add-train" type="submit">Submit</button>
+									</div>
+								</form>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div id="errorMsg" class="alert alert-danger"><strong>Please Fill Out All Fields.</strong>
+										<button type="button" class="close" id="closeError">&times;</button>
 									</div>
 								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label for="destination-input">Destination:</label>
-										<input class="form-control" id="destination-input" type="text">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label for="first-input">First Train(hh:mm):</label>
-										<input class="form-control" id="first-input" type="text">
-									</div>
-								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label for="frequency-input">Frequency (min):</label>
-										<input class="form-control" id="frequency-input" type="number">
-									</div>
-								</div>
-								<div class="col-md-2 submitBtn">
-									<button class="btn btn-primary" id="add-train" type="submit">Submit</button>
-								</div>
-							</form>
+							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 				<div  class="container">
 					<div class="panel panel-primary">

@@ -51,3 +51,10 @@ h1, h4 {
 	float: left;
 }
 
+#errorMsg {
+	text-align: center;
+}
+
+.alert {
+	margin-bottom: 0;
+}
