@@ -1,0 +1,12 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.add-train-container {
+	box-shadow: 0px 1px 4px 0px #333;
+}
+
+.submitBtn {
+	padding-top: 25px;
+}
