@@ -30,6 +30,10 @@ h1, h4 {
 	padding-top: 25px;
 }
 
+#add-train {
+	width: 100%;
+}
+
 .edit {
 	float: left;
 	margin-right: 5px;

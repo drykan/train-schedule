@@ -1,3 +1,5 @@
+
+//Time Clock
 var currentTime = moment().format("HH:mm A");
 console.log(currentTime);
 
@@ -35,6 +37,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Set firebase var's
 var database = firebase.database();
 
 var name,
@@ -49,15 +52,17 @@ var name,
 	nextTrain;
 
 
-
+//When clicking the submit button to add a new train
 $("#add-train").on("click", function(event) {
 	event.preventDefault();
 
+	//set vars of field inputs
 	name = $("#name-input").val().trim();
 	destination = $("#destination-input").val().trim();
 	first = $("#first-input").val().trim();
 	frequency = $("#frequency-input").val().trim();
 
+	//calculate time and arrival times
 	firstTimeConverted = moment(first, "HH:mm").subtract(1, "years");
 	diffTime = moment().diff(moment(firstTimeConverted), "minutes");
 	remainder = diffTime % frequency;
@@ -70,6 +75,7 @@ $("#add-train").on("click", function(event) {
 	console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
 	console.log("ARRIVAL TIME: " + theNextTrain);
 
+	//set up fields for Firebase
 	var newTrain = {
 		name: name,
 		destination: destination,
@@ -79,6 +85,7 @@ $("#add-train").on("click", function(event) {
 		theNextTrain: theNextTrain
 	};
 
+	//if fields are all filled out then push to firebase otherwise give an error and do not push.
 	if (name === "" || destination === "" || first === "" || frequency === "") {
 		$("#errorMsg").show();
 	} else {
@@ -87,6 +94,7 @@ $("#add-train").on("click", function(event) {
 	}
 });
 
+//setting up the table with the list of trains
 database.ref().on("child_added", function(childSnapshot) {
 
 	//Logging data to target a key
@@ -110,10 +118,10 @@ database.ref().on("child_added", function(childSnapshot) {
 	$(".edit").on("click", function() {
 		var editKey = $(this).attr('id');
 		var editYourID = "." + editKey; 
-		//var placeholderText = database.ref().child(editKey).val();
+		var placeholderText = childSnapshot.val();
 		$("#edit-train").attr('data-id', editKey);
 
-		$("#name-edit").attr('value', childSnapshot.val().name);
+		$("#name-edit").attr('value', placeholderText.name);
 		$("#destination-edit").attr('value', childSnapshot.val().destination);
 
 		console.log(editKey);
