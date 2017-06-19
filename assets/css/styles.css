@@ -40,14 +40,25 @@ h1, h4 {
 }
 
 .edit-icon {
-	color: forestgreen;
+	color: #228b22;
 }
+
+.edit-icon:hover {
+	text-shadow: 0px 1px 1px #333;
+	color: #228822;
+}
+
 .delete {
 	float: left;
 }
 
 .delete-icon {
-	color: darkred;
+	color: #8b0000;
+}
+
+.delete-icon:hover {
+	text-shadow: 0px 1px 1px #333;
+	color: #880000;
 }
 
 .modal-title {

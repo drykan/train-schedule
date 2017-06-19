@@ -16,7 +16,7 @@ $(document).ready(function(){
     datetime = $('#currentTime');
     update();
     setInterval(update, 1000);
-});
+
 
 //Hide Error Message for not filling out all fields when adding a new train
 $("#errorMsg").hide();
@@ -160,7 +160,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-
+});
 
 
 
