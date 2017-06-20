@@ -138,7 +138,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
 		$("#name-edit").attr('value', placeholderText.name);
 		$("#destination-edit").attr('value', childSnapshot.val().destination);
-
 		console.log(editKey);
 	});
 
@@ -171,6 +170,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
 		database.ref(keyToEdit).update(editTrain);
 
+		location.reload();
 	});
 });
 

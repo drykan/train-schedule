@@ -22,6 +22,10 @@ h1, h4 {
 	color: #fff !important;
 }
 
+#edit-modal {
+	margin-top: 25%;
+}
+
 .add-train-container {
 	box-shadow: 0px 4px 3px -3px #333;
 }
@@ -44,8 +48,7 @@ h1, h4 {
 }
 
 .edit-icon:hover {
-	text-shadow: 0px 1px 1px #333;
-	color: #228822;
+	color: #226622;
 }
 
 .delete {
@@ -57,8 +60,7 @@ h1, h4 {
 }
 
 .delete-icon:hover {
-	text-shadow: 0px 1px 1px #333;
-	color: #880000;
+	color: #660000;
 }
 
 .modal-title {
