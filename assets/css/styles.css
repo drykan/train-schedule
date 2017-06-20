@@ -45,10 +45,12 @@ h1, h4 {
 
 .edit-icon {
 	color: #228b22;
+	cursor: pointer;
 }
 
 .edit-icon:hover {
 	color: #226622;
+	cursor: pointer;
 }
 
 .delete {
@@ -57,10 +59,12 @@ h1, h4 {
 
 .delete-icon {
 	color: #8b0000;
+	cursor: pointer;
 }
 
 .delete-icon:hover {
 	color: #660000;
+	cursor: pointer;
 }
 
 .modal-title {
