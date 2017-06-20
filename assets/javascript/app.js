@@ -51,6 +51,16 @@ var name,
 	theNextTrain,
 	nextTrain;
 
+//Update records every minute
+setInterval(function() {
+	updateTime();
+}, 60 * 1000);
+
+//Update function
+var updateTime = function() {
+
+}
+
 
 //When clicking the submit button to add a new train
 $("#add-train").on("click", function(event) {
@@ -100,14 +110,18 @@ database.ref().on("child_added", function(childSnapshot) {
 	//Logging data to target a key
 	var keyId = childSnapshot.key;
 
+	//Creating Var to store the newly created details to be placed into the HTML
 	var trainName = childSnapshot.val().name;
 	var trainDest = childSnapshot.val().destination;
 	var trainFreq = childSnapshot.val().frequency;
 	var trainMin = childSnapshot.val().minTillNext;
 	var trainNext = childSnapshot.val().theNextTrain;
 
+	//Create table row of newly created train schedule
 	$(".train-section").append("<tr class=" + keyId + "><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" + trainNext + "</td><td>" + trainMin + " min" + "<td><div id=" + keyId + " class='edit' data-toggle='modal' data-target='#edit-modal'><i class='edit-icon fa fa-pencil-square fa-2x' aria-hidden='true'></i></div>" + " " + "<div id=" + keyId + " class='delete'><i class='delete-icon fa fa-window-close fa-2x' aria-hidden='true'></i></div></td></tr>");
 
+
+	//Delete record
 	$(".delete").on("click", function() {
 		var removeKey = $(this).attr('id');
 		database.ref().child(removeKey).remove();
@@ -115,6 +129,7 @@ database.ref().on("child_added", function(childSnapshot) {
 		$(yourID).remove();
 	});
 
+	//Edit existing record
 	$(".edit").on("click", function() {
 		var editKey = $(this).attr('id');
 		var editYourID = "." + editKey; 
@@ -127,6 +142,7 @@ database.ref().on("child_added", function(childSnapshot) {
 		console.log(editKey);
 	});
 
+	//Edit Modal popup
 	$("#edit-train").on("click", function(event) {
 		event.preventDefault();
 

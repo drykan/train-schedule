@@ -57,7 +57,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="frequency-edit">Frequency (min):</label>
-										<input class="form-control" id="frequency-edit" type="number" required="true" value="">
+										<input class="form-control" id="frequency-edit" type="number"  onkeypress="return event.charCode >= 48" min="1" min="0" required="true" value="">
 									</div>
 								</div>
 							</div>
@@ -104,7 +104,7 @@
 									<div class="col-md-2">
 										<div class="form-group">
 											<label for="frequency-input">Frequency (min):</label>
-											<input class="form-control" id="frequency-input" type="number" required="true">
+											<input class="form-control" id="frequency-input" type="number"  onkeypress="return event.charCode >= 48" min="1" min="0" required="true">
 										</div>
 									</div>
 									<div class="col-md-2 submitBtn">
