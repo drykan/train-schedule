@@ -118,11 +118,15 @@ database.ref().on("child_added", function(childSnapshot) {
 	var trainNext = childSnapshot.val().theNextTrain;
 
 	//Create table row of newly created train schedule
-	$(".train-section").append("<tr class=" + keyId + "><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" + trainNext + "</td><td>" + trainMin + " min" + "<td><div id=" + keyId + " class='edit' data-toggle='modal' data-target='#edit-modal'><i class='edit-icon fa fa-pencil-square fa-2x' aria-hidden='true'></i></div>" + " " + "<div id=" + keyId + " class='delete'><i class='delete-icon fa fa-window-close fa-2x' aria-hidden='true'></i></div></td></tr>");
+	$(".train-section").append("<tr class=" + keyId + "><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" + trainNext + "</td><td>" + trainMin + " min" + "<td><div id=edit-" + keyId + " class='edit' data-key='" + keyId + "' data-toggle='modal' data-target='#edit-modal'><i class='edit-icon fa fa-pencil-square fa-2x' aria-hidden='true'></i></div>" + " " + "<div id=" + keyId + " class='delete'><i class='delete-icon fa fa-window-close fa-2x' aria-hidden='true'></i></div></td></tr>");
 
+	$("#name-input").val('');
+	$("#destination-input").val('');
+	$("#first-input").val('');
+	$("#frequency-input").val('');
 
 	//Delete record
-	$(".delete").on("click", function() {
+	$("#" + keyId).on("click", function() {
 		var removeKey = $(this).attr('id');
 		database.ref().child(removeKey).remove();
 		var yourID = "." + removeKey;
@@ -130,14 +134,19 @@ database.ref().on("child_added", function(childSnapshot) {
 	});
 
 	//Edit existing record
-	$(".edit").on("click", function() {
-		var editKey = $(this).attr('id');
+	$("#edit-" + keyId).on("click", function() {
+
+		var editKey = $(this).attr('data-key');
 		var editYourID = "." + editKey; 
-		var placeholderText = childSnapshot.val();
 		$("#edit-train").attr('data-id', editKey);
 
+		var placeholderText = childSnapshot.val();
+
 		$("#name-edit").attr('value', placeholderText.name);
-		$("#destination-edit").attr('value', childSnapshot.val().destination);
+		$("#destination-edit").attr('value', placeholderText.destination);
+		$("#first-edit").attr('value', placeholderText.first);
+		$("#frequency-edit").attr('value', placeholderText.frequency);
+
 		console.log(editKey);
 	});
 
@@ -173,7 +182,6 @@ database.ref().on("child_added", function(childSnapshot) {
 		location.reload();
 	});
 });
-
 
 
 });
